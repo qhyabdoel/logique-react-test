@@ -21,7 +21,7 @@ type Action =
 
 const initialState: State = { items: [] };
 
-function reducer(state: State, action: Action): State {
+export function cartReducer(state: State, action: Action): State {
   switch (action.type) {
     case "add": {
       const exists = state.items.find((i) => i.id === action.item.id);
@@ -65,7 +65,7 @@ const CartContext = createContext<{
 } | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(cartReducer, initialState);
 
   useEffect(() => {
     const raw = localStorage.getItem("shop:cart");
