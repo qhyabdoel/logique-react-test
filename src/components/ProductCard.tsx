@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="card">
+    <div className="card py-4 px-2">
       <Link to={`/product/${product.id}`}>
         <img
           src={product.images?.[0] || placeholder}

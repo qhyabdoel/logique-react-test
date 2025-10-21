@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchProduct, Product } from "../api/products";
 import { useCart } from "../state/cart";
 
 export default function ProductDetail() {
+  const [showSuccess, setShowSuccess] = useState(false);
   const { id } = useParams();
   const queryClient = useQueryClient();
   const { data: product } = useQuery<Product, Error>({
@@ -43,6 +44,7 @@ export default function ProductDetail() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
+      setShowSuccess(true);
     },
   });
 
@@ -50,7 +52,8 @@ export default function ProductDetail() {
 
   return (
     <div className="container">
-      <h2>{product.title}</h2>
+      <h2 className="mb-4 font-bold text-xl">{product.title}</h2>
+
       <div className="detail">
         <img
           src={product.images[0]}
@@ -66,11 +69,30 @@ export default function ProductDetail() {
           <p>{product.description}</p>
           <p>Category: {product.category?.name}</p>
           <p>Price: ${product.price}</p>
-          <button onClick={() => mutation.mutate(undefined)}>
+          <button
+            onClick={() => mutation.mutate(undefined)}
+            className="bg-blue-400 text-white px-4 py-2 rounded mt-4"
+          >
             Add to cart
           </button>
         </div>
       </div>
+
+      {showSuccess && (
+        <div
+          className="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded relative mb-4 flex items-center justify-between mt-4 w-48"
+          role="alert"
+        >
+          <span>Added to cart!</span>
+          <button
+            className="ml-4 text-green-900 hover:text-green-700 font-bold text-xl leading-none"
+            aria-label="Close"
+            onClick={() => setShowSuccess(false)}
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   );
 }

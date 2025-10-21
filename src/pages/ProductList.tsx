@@ -27,7 +27,7 @@ export default function ProductList() {
   return (
     <div className="container">
       <h1>Products</h1>
-      <div className="filters">
+      <div className="filters mb-8">
         <input
           placeholder="Search by title"
           value={query}

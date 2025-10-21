@@ -10,11 +10,13 @@ export default function App() {
     <CartProvider>
       <div className="app">
         <header className="header">
-          <Link to="/" className="logo">
+          <Link to="/" className="text-2xl">
             Shop Explorer
           </Link>
           <nav>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart" className="font-bold text-2xl">
+              CART
+            </Link>
           </nav>
         </header>
 
