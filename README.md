@@ -12,8 +12,6 @@ This project was built with a focus on clarity, maintainability, and a modern Re
 - **Image fallback and title truncation**: Improves robustness and user experience by handling broken images and long product names gracefully.
 - **Minimal dependencies**: Only essential libraries are included to keep the bundle small and the codebase easy to understand.
 
-Tests and advanced error handling were intentionally omitted to keep the implementation focused and easy to follow. The codebase is structured to make adding these features straightforward in the future.
-
 Small React + TypeScript app that uses the Platzi / Fake Store API to browse products, view details and manage a small cart.
 
 Setup
